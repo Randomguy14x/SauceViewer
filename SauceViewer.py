@@ -125,8 +125,11 @@ def onRandom(tags):
     global counter
     global counter2
 
+    #idk how to get list of all tags so
+    #this is default for now
     tags.replace(",", "")
-
+    if tags == "":
+        tags = "big-breasts"
 
     #Max Page number for any given doujin tag set is unknown, so I gave counter=5000
     #because the most popular tag (big-breasts) has 4237 pages so 5000 will
@@ -137,13 +140,16 @@ def onRandom(tags):
         counter2 = 0
     randomPage = random.randint(1,1+counter)
     results = [x for x in nhentai.search(tags, randomPage)]
-    if results == []:
+    if results == [] & counter >25:
         counter-=1000
         counter2+=1
         onRandom(tags=tags)
         return
+    elif results == []:
+        counter-=1
+        onRandom(tags=tags)
+        return
     counter = 5000
-
     #Creats doujin now that sauce has FINALLY been found from whatever that thing is above me
     try:
         d = nhentai.Doujinshi(results[random.randint(0,len(results))].magic)
@@ -181,7 +187,8 @@ def onNext():
     global nextButton
     global backButton
 
-    page += 1
+    if page == 1-d.pages:
+        page += 1
 
     #Only re-renders new images to save time
     if len(images) -1 < page:
