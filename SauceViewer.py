@@ -140,16 +140,14 @@ def onRandom(tags):
         counter2 = 0
     randomPage = random.randint(1,1+counter)
     results = [x for x in nhentai.search(tags, randomPage)]
-    if results == [] & counter >25:
+    if results == [] and counter >25:
         counter-=1000
         counter2+=1
         onRandom(tags=tags)
         return
-    elif results == [] & counter > 0:
+    elif results == [] and counter > 0:
         counter-=1
         onRandom(tags=tags)
-        return
-    else:
         return
     counter = 5000
     #Creats doujin now that sauce has FINALLY been found from whatever that thing is above me
