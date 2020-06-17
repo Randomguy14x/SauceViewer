@@ -187,7 +187,7 @@ def onNext():
     global nextButton
     global backButton
 
-    if page == 1-d.pages:
+    if 1+page < d.pages:
         page += 1
 
     #Only re-renders new images to save time
