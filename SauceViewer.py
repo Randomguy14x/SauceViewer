@@ -136,7 +136,7 @@ def onRandom(tags):
     #mean I'm good for awhile
     #I think this might just be a limitation of the nhentai import
     if counter2 == 5:
-        counter = random.randint(1,26)
+        counter = 25
         counter2 = 0
     randomPage = random.randint(1,1+counter)
     results = [x for x in nhentai.search(tags, randomPage)]
